@@ -10,10 +10,9 @@ axios
        const newProfile = response.data;
        cardsClass.appendChild(profiles(newProfile));
           })
-//  })
-// .catch(error => {
-//   console.log(`The data threw an error ${error}`);
-// })
+.catch(error => {
+  console.log(`The data threw an error ${error}`);
+})
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -31,13 +30,23 @@ const cardsClass = document.querySelector('.cards');
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
           , manually find some other users' github handles, or use the list found 
           at the bottom of the page. Get at least 5 different Github usernames and add them as
-          Individual strings to the friendsArray below.
+          Individual strings to the followersArray below.
           
           Using that array, iterate over it, requesting data for each user, creating a new card for each
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['https://api.github.com/users/nathan-saygers','https://api.github.com/users/jason-glassbrook','https://api.github.com/users/lyndsiWilliams','https://api.github.com/users/ArianaShackelford','https://api.github.com/users/michelangelo17'];
+
+followersArray.forEach(item => {
+  axios
+  .get(item)
+  .then(response => {
+    console.log(response)
+    const newProfile = profiles(response.data)
+    cardsClass.appendChild(newProfile)
+  })
+})
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
