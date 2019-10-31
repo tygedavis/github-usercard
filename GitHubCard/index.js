@@ -42,7 +42,7 @@ followersArray.forEach(item => {
   axios
   .get(item)
   .then(response => {
-    console.log(response)
+    //console.log(response)
     const newProfile = profiles(response.data)
     cardsClass.appendChild(newProfile)
   })
@@ -98,12 +98,12 @@ function profiles(data){
   img.src = data.avatar_url;
   name.textContent = data.name;
   userName.textContent = data.login;
-  location.textContent = data.location;
+  location.textContent = `From ${data.location}`;
   linkChild.textContent = data.name;
   linkChild.setAttribute('href', data.html_url);
-  followers.textContent = data.followers;
-  following.textContent = data.following;
-  bio.textContent = data.bio;
+  followers.textContent = `Followers: ${data.followers}`;
+  following.textContent = `Following: ${data.following}`;
+  bio.textContent = `GitHub Bio: ${data.bio}`;
 
   return card;
 }
