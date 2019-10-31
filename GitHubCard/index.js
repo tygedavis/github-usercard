@@ -2,10 +2,18 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
-// axios.get('https://api.github.com/users/tygedavis')
-//   .then(response => {
-//     console.log(response);
-//   })
+axios
+  .get('https://api.github.com/users/tygedavis')
+  .then(response => {
+     //console.log(response);
+     //response.data.forEach(response => {
+       const newProfile = response.data;
+       cardsClass.appendChild(profiles(newProfile));
+          })
+//  })
+// .catch(error => {
+//   console.log(`The data threw an error ${error}`);
+// })
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -17,6 +25,7 @@
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
+const cardsClass = document.querySelector('.cards');
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
@@ -77,7 +86,7 @@ function profiles(data){
 
 
   //Add Content to Elements
-  img.src = data.avatar_URL;
+  img.src = data.avatar_url;
   name.textContent = data.name;
   userName.textContent = data.login;
   location.textContent = data.location;
@@ -86,6 +95,8 @@ function profiles(data){
   followers.textContent = data.followers;
   following.textContent = data.following;
   bio.textContent = data.bio;
+
+  return card;
 }
 
 /* List of LS Instructors Github username's: 
